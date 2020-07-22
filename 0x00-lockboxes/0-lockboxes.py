@@ -1,18 +1,19 @@
 #!/usr/bin/python3
-"""test func"""
+"""contain canUnlockAll function"""
+
 
 def canUnlockAll(boxes):
-    """ test """
+    """ determines if all the boxes can be opened """
     keys = {0}
-    canFinish = False
+    done = False
 
-    while not canFinish:
-        flag = False
+    while not done:
+        updated = False
         for i in range(len(boxes)):
             if i in keys:
                 for key in boxes[i]:
                     if key not in keys:
-                        flag = True
+                        updated = True
                     keys.add(key)
-        canFinish = True if not flag else False
+        done = True if not updated else False
     return len(keys) == len(boxes)
