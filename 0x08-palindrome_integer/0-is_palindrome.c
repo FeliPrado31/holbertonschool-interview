@@ -9,28 +9,22 @@
 */
 int is_palindrome(unsigned long n)
 {
-	int arr[20] = {0};
-	int i = 0, lenOfNumber = 0;
-	unsigned long numberToCheck = n;
+    int count1 = 0, count2 = 0;
+    unsigned long array[1024];
+    unsigned long num = n;
 
-	do {
-		numberToCheck /= 10, lenOfNumber++;
-	} while (numberToCheck);
+    while (num != 0)
+    {
+        array[count1++] = num % 10;
+        num = num / 10;
+    }
 
-	if (lenOfNumber == 1)
-		return (1);
+    count1--;
+    for (; count1 > count2; count1--, count2++)
+    {
+        if (array[count1] != array[count2])
+            return (0);
+    }
 
-	for (i = 0; i < lenOfNumber; i++)
-		arr[lenOfNumber - 1 - i] = n % 10, n /= 10;
-
-	for (i = 0; i < lenOfNumber; i++)
-	{
-		if (i > lenOfNumber / 2)
-			break;
-		else if (arr[i] == arr[lenOfNumber - 1 - i])
-			continue;
-		else
-			return (0);
-	}
-	return (1);
+    return (1);
 }
