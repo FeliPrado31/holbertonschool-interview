@@ -4,10 +4,10 @@ import sys
 
 def queens(n):
     paths = []
-    safe_zone = set()
+    data_set = set()
     for column in range(n):
         paths.append([0, column])
-        safe_zone.add(column)
+        data_set.add(column)
 
     track = []
 
@@ -31,17 +31,17 @@ def queens(n):
             if c + distance < n:
                 dead_zone.add(c + distance)
 
-        data = safe_zone.difference(dead_zone)
-        if not data:
+        local_safe = data_set.difference(dead_zone)
+        if not local_safe:
             if nextRow == n:
                 copy = track.copy()
                 copy.reverse()
                 print(copy, flush=True)
             track.pop(0)
         else:
-            data = list(data)
-            data.reverse()
-            for position in data:
+            local_safe = list(local_safe)
+            local_safe.reverse()
+            for position in local_safe:
                 paths.insert(0, [nextRow, position])
 
 
