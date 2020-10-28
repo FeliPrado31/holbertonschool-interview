@@ -3,46 +3,46 @@ import sys
 
 
 def queens(n):
-    count = []
-    data = set()
-    for i in range(n):
-        count.append([0, i])
-        data.add(i)
+    paths = []
+    safe_zone = set()
+    for column in range(n):
+        paths.append([0, column])
+        safe_zone.add(column)
 
-    data_arr = []
+    track = []
 
-    while count:
-        [row, i] = count.pop(0)
-        while data_arr and (row < data_arr[0][0]):
-            data_arr.pop(0)
-        if data_arr and (row == data_arr[0][0]):
-            data_arr[0] = [row, i]
+    while paths:
+        [row, column] = paths.pop(0)
+        while track and (row < track[0][0]):
+            track.pop(0)
+        if track and (row == track[0][0]):
+            track[0] = [row, column]
         else:
-            data_arr.insert(0, [row, i])
+            track.insert(0, [row, column])
 
         nextRow = row + 1
 
-        killZone = set()
-        for (r, c) in data_arr:
-            killZone.add(c)
+        dead_zone = set()
+        for (r, c) in track:
+            dead_zone.add(c)
             distance = nextRow - r
             if c - distance >= 0:
-                killZone.add(c - distance)
+                dead_zone.add(c - distance)
             if c + distance < n:
-                killZone.add(c + distance)
+                dead_zone.add(c + distance)
 
-        local_diff = data.difference(killZone)
-        if not local_diff:
+        data = safe_zone.difference(dead_zone)
+        if not data:
             if nextRow == n:
-                copy = data_arr.copy()
+                copy = track.copy()
                 copy.reverse()
                 print(copy, flush=True)
-            data_arr.pop(0)
+            track.pop(0)
         else:
-            local_diff = list(local_diff)
-            local_diff.reverse()
-            for position in local_diff:
-                count.insert(0, [nextRow, position])
+            data = list(data)
+            data.reverse()
+            for position in data:
+                paths.insert(0, [nextRow, position])
 
 
 if __name__ == '__main__':
