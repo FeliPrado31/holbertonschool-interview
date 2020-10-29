@@ -22,26 +22,26 @@ def queens(n):
 
         nextRow = row + 1
 
-        dead_zone = set()
+        data_death_zone = set()
         for (r, c) in track:
-            dead_zone.add(c)
+            data_death_zone.add(c)
             distance = nextRow - r
             if c - distance >= 0:
-                dead_zone.add(c - distance)
+                data_death_zone.add(c - distance)
             if c + distance < n:
-                dead_zone.add(c + distance)
+                data_death_zone.add(c + distance)
 
-        local_safe = data_set.difference(dead_zone)
-        if not local_safe:
+        local_list = data_set.difference(data_death_zone)
+        if not local_list:
             if nextRow == n:
                 copy = track.copy()
                 copy.reverse()
                 print(copy, flush=True)
             track.pop(0)
         else:
-            local_safe = list(local_safe)
-            local_safe.reverse()
-            for position in local_safe:
+            local_list = list(local_list)
+            local_list.reverse()
+            for position in local_list:
                 paths.insert(0, [nextRow, position])
 
 
