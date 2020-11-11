@@ -1,40 +1,40 @@
 #include "search.h"
 
 /**
- * linear_skip - Write a function that searches for a value in a sorted skip list of integers.
+ * linear_skip - do a search by the given value
  * @list: is the given list
  * @value: is the value to be searched
  * Return: the node with the value or null if no found.
  **/
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-    skiplist_t *current = list, *data = NULL, *lastOne = NULL;
+    skiplist_t *current = list, *express = NULL, *lastIndex = NULL;
 
     while (current)
     {
-        data = current->data;
+        express = current->express;
 
-        if (!data)
+        if (!express)
         {
-            lastOne = current;
-            while (lastOne->next)
-                lastOne = lastOne->next;
+            lastIndex = current;
+            while (lastIndex->next)
+                lastIndex = lastIndex->next;
             printf("Value found between indexes [%ld] and [%ld]\n",
                    current->index,
-                   lastOne->index);
+                   lastIndex->index);
         }
         else
         {
-            printf("Value checked at index [%ld] = [%d]\n", data->index, data->n);
-            if (value > data->n)
+            printf("Value checked at index [%ld] = [%d]\n", express->index, express->n);
+            if (value > express->n)
             {
-                current = data;
+                current = express;
                 continue;
             }
             else
                 printf("Value found between indexes [%ld] and [%ld]\n",
                        current->index,
-                       data->index);
+                       express->index);
         }
 
         while (current)
