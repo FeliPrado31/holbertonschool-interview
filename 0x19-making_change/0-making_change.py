@@ -16,19 +16,19 @@ def makeChange(coins, total):
         return 0
 
     tmp = total + 1
-    data = {0: 0}
+    tmp_list = {0: 0}
 
     for i in range(1, total + 1):
-        data[i] = tmp
+        tmp_list[i] = tmp
 
         for coin in coins:
             current = i - coin
             if current < 0:
                 continue
 
-            data[i] = min(data[current] + 1, data[i])
+            tmp_list[i] = min(tmp_list[current] + 1, tmp_list[i])
 
-    if data[total] == total + 1:
+    if tmp_list[total] == total + 1:
         return -1
 
-    return data[total]
+    return tmp_list[total]
