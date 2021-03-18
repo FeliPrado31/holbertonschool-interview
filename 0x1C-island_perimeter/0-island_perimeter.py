@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Create a function def island_per(grid):
+Create a function def island_perimeter(grid):
 that returns the per of the island described in grid:
 O(n) time O(1) space
 """
 
 
-def island_per(grid):
+def island_perimeter(grid):
     """Looks up and left to subtract water"""
     per = 0
     for row in range(len(grid)):
