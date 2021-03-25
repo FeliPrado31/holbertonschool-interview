@@ -26,6 +26,6 @@ struct binary_tree_s
 typedef struct binary_tree_s binary_tree_t;
 
 int binary_tree_is_avl(const binary_tree_t *tree);
-int is_avl(const binary_tree_t *tree, int min, int max, int *height);
+int check_if_is_avl(const binary_tree_t *tree, int min, int max, int *height);
 
 #endif
